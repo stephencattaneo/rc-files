@@ -1,0 +1,4 @@
+\timing
+\pset null <NULL>
+\set PROMPT1 '%:bell:%:prompt_prefix:[%M] %/%x%R%# '
+\set PROMPT2 '%:prompt_prefix:[%M] %/%x%R%# '
