@@ -1,0 +1,22 @@
+[user]
+	name = Stephen Cattaneo
+	email = $EMAIL_ACCOUNT
+[suer]
+[push]
+	default = current
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[alias]
+	rmd = rm $(git ls-files --deleted)
+	d = diff --no-prefix
+	dc = diff --cached --no-prefix
+	co = checkout
+	s = status
+	a = add
+	t = commit
+	l = log
+        list = branch --list
+	cpx = cherry-pick -x
+	su = submodule update
