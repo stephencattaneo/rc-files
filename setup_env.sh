@@ -24,4 +24,11 @@ function aliases {
     
 }
 
-sublime()
+function python_util {
+  mkdir -p $HOME/lib/python
+  ln -sf $WORKSPACE/rc-files/util.py $HOME/lib/python
+}
+
+sublime
+aliases
+python_util
