@@ -15,18 +15,18 @@ function sublime {
 
 function aliases {
   cd
-  ln -sf $WORKSPACE/rc-files/bashrc .bash_profile
+  ln -sf $HOME/workspace/rc-files/bashrc .bash_profile
 
   for i in gitconfig pryrc psqlrc screenrc vimrc
   do
-    ln -sf $WORKSPACE/rc-files/$i .$i
+    ln -sf $HOME/workspace/rc-files/$i .$i
   done
     
 }
 
 function python_util {
   mkdir -p $HOME/lib/python
-  ln -sf $WORKSPACE/rc-files/util.py $HOME/lib/python
+  ln -sf $HOME/workspace/rc-files/util.py $HOME/lib/python
 }
 
 sublime
