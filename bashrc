@@ -10,6 +10,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Hom
 export PATH=$PATH:$HOME/bin:$HOME/bin/depot_tools:/usr/local/terraform:$JAVA_HOME/bin:.
 export EDITOR=vim
 export WORKSPACE=$HOME/workspace
+export HISTTIMEFORMAT=" [%Y-%m-%d %T %Z] "
 
 
 alias py3k='python3'
