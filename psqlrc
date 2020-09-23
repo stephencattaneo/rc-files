@@ -38,9 +38,9 @@
 
 \set conninfo 'select usename, count(*) from pg_stat_activity group by usename;'
 
-\set activity 'select now() - query_start as run_time, datname, pid, usename, application_name,client_addr, client_hostname, client_port, query, state from pg_stat_activity order by 1 desc;'
+\set activity 'select now() - query_start as run_time, datname, pid, usename, application_name, query, state from pg_stat_activity order by 1 desc;'
 
-\set activeactive 'select now() - query_start as run_time, datname, pid, usename, application_name,client_addr, client_hostname, client_port, query, state from pg_stat_activity where state = \'active\' order by 1 desc;'
+\set activeactive 'select now() - query_start as run_time, datname, pid, usename, application_name, query, state from pg_stat_activity where state = \'active\' order by 1 desc;'
 
 \set waits 'SELECT pg_stat_activity.pid, pg_stat_activity.query, pg_stat_activity.waiting, now() - pg_stat_activity.query_start AS \"totaltime\", pg_stat_activity.backend_start FROM pg_stat_activity WHERE pg_stat_activity.query !~ \'%IDLE%\'::text AND pg_stat_activity.waiting = true;'
 

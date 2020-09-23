@@ -4,14 +4,33 @@ then
   source /etc/bashrc
 fi
 
+# for building things (e.g. ruby) with ssl
+export LDFLAGS=-L/usr/local/opt/openssl/lib
+export CPPFLAGS=-I/usr/local/opt/openssl/include
+# For pkg-config to find this software you may need to set:
+export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
 
-export PYTHONPATH=$HOME/lib/python
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_101.jdk/Contents/Home
-export PATH=$PATH:$HOME/bin:$HOME/bin/depot_tools:/usr/local/terraform:$JAVA_HOME/bin:.
+export PATH="/usr/local/opt/postgresql@9.5/bin/:$PATH:$HOME/bin:$HOME/bin/depot_tools:/usr/local/terraform:$JAVA_HOME/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$HOME/Library/Python/2.7/bin:."
 export EDITOR=vim
 export WORKSPACE=$HOME/workspace
+export PROJECT_HOME=$WORKSPACE
 export HISTTIMEFORMAT=" [%Y-%m-%d %T %Z] "
+export PS1='[\u@\h \w]\$ '
+#export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
+#export KUBECONFIG=~/.kube/config:$PROJECT_HOME/terraform-k8s/environments/dev/kubeconfig_agari-dev-k8s:$PROJECT_HOME/terraform-k8s/environments/stage/kubeconfig_agari-stage-k8s:$PROJECT_HOME/terraform-k8s/environments/prod/kubeconfig_agari-prod-k8s
+export KUBECONFIG=~/.kube/config:$PROJECT_HOME/k8s-bootstrapping/environments/dev/kubeconfig_agari-dev-k8s:$PROJECT_HOME/k8s-bootstrapping/environments/stage/kubeconfig_agari-stage-k8s:$PROJECT_HOME/k8s-bootstrapping/environments/prod/kubeconfig_agari-prod-k8s
+[[ -s "$PROJECT_HOME/cousteau/dev_setup/agarirc" ]] && source "$PROJECT_HOME/cousteau/dev_setup/agarirc" # Load the agari profile!
 
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+source $HOME/.budget-tracker-secrets
+source $HOME/.estimate-secrets
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+source $HOME/.kubectlrc
+
+ssh-add -K ~/.ssh/id_rsa
+ssh-add -K ~/.ssh/agari-prod-ep
+ssh-add -K ~/.ssh/agari-ep-stage
 
 alias py3k='python3'
 alias py3='py3k'
@@ -43,7 +62,7 @@ alias grep='/usr/bin/grep -I'
 alias top='sudo htop'
 alias g='git'
 alias uni='unicorn -c config/unicorn.rb'
-alias ge="g s -s | perl -pe 's/[ AM?]+(.*)/\$1/' | xargs -I {} subl {}"
+alias ge="g s -s | perl -pe 's/[ AM?]+(.*)/\$1/' | xargs -I {} code {}"
 alias prod_assets='RAILS_ENV=production RAILS_GROUPS=assets  bundle exec rake assets:precompile'
 alias node='node --harmony'
 alias e='ember'
@@ -51,6 +70,8 @@ alias restart_camera_service='sudo killall VDCAssistant'
 alias virtualenv3='~/Library/Python/3.6/bin/virtualenv'
 alias py3_env='. $WORKSPACE/py3_env/bin/activate'
 alias strace='dtruss'
+alias k=kubectl
+complete -F __start_kubectl k
 
 [[ "$PATH" =~ "git" ]] || export PATH=$PATH:/usr/local/git/bin
 
@@ -140,13 +161,10 @@ psql-ssh () {
 }
 
 
-export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-export PS1='[\u@\h \w]\$ '
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-source $HOME/.budget-tracker
-source $HOME/.agarirc
-
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
