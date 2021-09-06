@@ -18,10 +18,7 @@ export PROJECT_HOME=$WORKSPACE
 export HISTTIMEFORMAT=" [%Y-%m-%d %T %Z] "
 export PS1='[\u@\h \w]\$ '
 #export SSL_CERT_FILE=/usr/local/etc/openssl/cert.pem
-#export KUBECONFIG=~/.kube/config:$PROJECT_HOME/terraform-k8s/environments/dev/kubeconfig_agari-dev-k8s:$PROJECT_HOME/terraform-k8s/environments/stage/kubeconfig_agari-stage-k8s:$PROJECT_HOME/terraform-k8s/environments/prod/kubeconfig_agari-prod-k8s
-export KUBECONFIG=~/.kube/config:$PROJECT_HOME/k8s-bootstrapping/environments/dev/kubeconfig_agari-dev-k8s:$PROJECT_HOME/k8s-bootstrapping/environments/stage/kubeconfig_agari-stage-k8s:$PROJECT_HOME/k8s-bootstrapping/environments/prod/kubeconfig_agari-prod-k8s
-[[ -s "$PROJECT_HOME/cousteau/dev_setup/agarirc" ]] && source "$PROJECT_HOME/cousteau/dev_setup/agarirc" # Load the agari profile!
-export BASH_SILENCE_DEPRECATION_WARNING=1
+
 
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
@@ -31,8 +28,6 @@ source $HOME/.estimate-secrets
 source $HOME/.kubectlrc
 
 ssh-add -K ~/.ssh/id_rsa
-ssh-add -K ~/.ssh/agari-prod-ep
-ssh-add -K ~/.ssh/agari-ep-stage
 
 alias py3k='python3'
 alias py3='py3k'
