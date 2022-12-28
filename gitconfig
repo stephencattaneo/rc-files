@@ -1,6 +1,7 @@
 [user]
 	name = Stephen Cattaneo
-	email = scattaneo@$company.com
+	email = <email here>
+	signingkey = <gpg id here>
 [suer]
 [push]
 	default = current
@@ -20,3 +21,5 @@
         list = branch --list
 	cpx = cherry-pick -x
 	su = submodule update
+[commit]
+	gpgsign = true
