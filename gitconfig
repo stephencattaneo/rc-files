@@ -1,25 +1,33 @@
 [user]
-	name = Stephen Cattaneo
-	email = <email here>
-	signingkey = <gpg id here>
+    name = Stephen Cattaneo
+    email = <email here>
+    signingkey = <gpg id here>
 [suer]
 [push]
-	default = current
+    default = current
 [filter "media"]
-	clean = git media clean %f
-	smudge = git media smudge %f
-	required = true
+    clean = git media clean %f
+    smudge = git media smudge %f
+    required = true
 [alias]
-	rmd = rm $(git ls-files --deleted)
-	d = diff --no-prefix
-	dc = diff --cached --no-prefix
-	co = checkout
-	s = status
-	a = add
-	t = commit
-	l = log
-        list = branch --list
-	cpx = cherry-pick -x
-	su = submodule update
+    rmd = rm $(git ls-files --deleted)
+    d = diff --no-prefix
+    dc = diff --cached --no-prefix
+    co = checkout
+    s = status
+    a = add
+    t = commit
+    l = log
+    p = push
+    f = fetch origin main:main
+    r = rebase main
+    list = branch --list
+    cpx = cherry-pick -x
+    su = submodule update
+    amend = commit --amend --no-edit
+[pull]
+    rebase = true
+[init]
+    defaultBranch = main
 [commit]
-	gpgsign = true
+    gpgsign = true
