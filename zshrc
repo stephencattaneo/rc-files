@@ -1,4 +1,4 @@
-export PATH="$PATH:$HOME/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:."
+export PATH="$PATH:$HOME/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$HOME/Library/Python/3.9/bin:."
 export EDITOR=vim
 
 autoload -Uz compinit
@@ -11,7 +11,6 @@ source $HOME/.aws-shell
 # k8s
 source <(kubectl completion zsh)
 alias k=kubectl
-complete -F __start_kubectl k
 
 # dns clear cache
 alias clear_dns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
@@ -46,7 +45,7 @@ alias resource='sash'
 alias ra='sudo /etc/init.d/apache2 restart'
 alias status='git status'
 alias grep='/usr/bin/grep -I'
-alias g='/usr/local/bin/git'
+alias g='git'
 alias ge="g s -s | perl -pe 's/[ AM?]+(.*)/\$1/' | xargs -I {} code {}"
 alias tf='terraform'
 setopt interactivecomments
@@ -58,10 +57,8 @@ alias restart_camera_service='sudo killall VDCAssistant'
 alias strace='dtruss'
 alias background_start='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background &'
 alias background_stop='sudo killall ScreenSaverEngine'
-alias restart_core_audio="sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`"
+alias restart_core_audio="sudo kill $(ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}')"
 
-# FalconCLI
-export FALCON_CLI_X=1
 
 # Utility Functions
 function timestamp2epoch {
@@ -105,13 +102,6 @@ function desk {
   cd $HOME/Desktop
 }
 
-export PATH="/usr/local/opt/postgresql@12/bin:$PATH"
-
-export PATH="$PATH:$WORKSPACE/fdf-dev/bin"
-
-export NODE_EXTRA_CA_CERTS="$HOME/npm-sfdc-certs.pem"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
