@@ -25,6 +25,7 @@
     cpx = cherry-pick -x
     su = submodule update
     amend = commit --amend --no-edit
+    wip = commit -m wip
 [pull]
     rebase = true
 [init]
